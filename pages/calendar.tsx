@@ -1,12 +1,11 @@
 import React from "react"
 import Header from "../components/Header"
 
-function index() {
+export default function Calendar() {
   return (
     <div>
       <Header />
+      <h3>Calendar</h3>
     </div>
   )
 }
-
-export default index
