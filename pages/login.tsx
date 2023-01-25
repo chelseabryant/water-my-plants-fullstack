@@ -10,6 +10,9 @@ export default function Login() {
   const [errorMessage, setErrorMessage] = useState("")
   const { user, setUser } = useUser()
 
+  // TODO: When create account is clicked without anything entered it creates an empty new user. Need to
+  // prevent this from happening! say invalid credentials.
+
   const nameInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setName(e.target.value)
   }
