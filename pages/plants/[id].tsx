@@ -4,10 +4,12 @@ import Footer from "../../components/Footer"
 import Header from "../../components/Header"
 import { IFullPlant } from "../../interfaces"
 import styles from "../../styles/Explore.module.css"
+import { useUser } from "../../contexts/UserContext"
 
 export default function PlantDetails() {
   const [plant, setPlant] = useState<IFullPlant>({} as IFullPlant)
   const router = useRouter()
+  const { user, setUser } = useUser()
 
   useEffect(() => {
     const fetchData = async () => {
@@ -26,7 +28,26 @@ export default function PlantDetails() {
     }
     fetchData()
   }, [])
-  console.log(plant)
+
+  const onAddClick = async () => {
+    try {
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_REQUEST_BASE_URL}/a/plants/add_plant`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            user: user.id,
+            plant: plant.id,
+          }),
+        }
+      )
+      const data = await response.json()
+      console.log("THIS DATA: ", data)
+    } catch (e) {
+      console.log("HIT CATCH: ", e)
+    }
+  }
 
   return (
     <div>
@@ -41,6 +62,7 @@ export default function PlantDetails() {
         <li>Temperature tolerance: {plant.temperature}</li>
         <li>Humidity: {plant.humidity}</li>
       </ul>
+      {user.id && <button onClick={onAddClick}>Add plant to My Plants</button>}
       <br />
       <Footer />
     </div>

@@ -1,7 +1,10 @@
 import Link from "next/link"
 import React from "react"
+import { useUser } from "../contexts/UserContext"
+import { IUser } from "../interfaces"
 
 export default function Header() {
+  const { user, setUser } = useUser()
   return (
     <div>
       <Link href="/">
@@ -18,7 +21,11 @@ export default function Header() {
           <Link href="/calendar">Calendar</Link>
         </li>
         <li>
-          <Link href="/login">Login</Link>
+          {user.id ? (
+            <button onClick={() => setUser({} as IUser)}>Log out</button>
+          ) : (
+            <Link href="/login">Login</Link>
+          )}
         </li>
       </ul>
     </div>
