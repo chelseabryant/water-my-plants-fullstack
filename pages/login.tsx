@@ -72,7 +72,6 @@ export default function Login() {
       }
     }
   }
-  console.log("user", user)
   return (
     <div>
       <Header />

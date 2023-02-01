@@ -4,6 +4,12 @@ export interface IUser {
     email: string
 }
 
+export interface IMyPlant {
+    id: number,
+    name: string,
+    image: string
+}
+
 export interface IFullPlant {
     id: number,
     name: string,

@@ -15,7 +15,9 @@ export default function Header() {
           <Link href="/plants/explore">Explore Plants</Link>
         </li>
         <li>
-          <Link href="/plants/my-plants">My Plants</Link>
+          <Link href="/plants/my-plants">
+            {user.id ? `${user.username}'s Plants` : "My Plants"}
+          </Link>
         </li>
         <li>
           <Link href="/calendar">Calendar</Link>

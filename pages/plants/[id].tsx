@@ -34,9 +34,10 @@ export default function PlantDetails() {
   }, [])
 
   const onAddClick = async () => {
+    setAddedPlant(true)
     try {
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_REQUEST_BASE_URL}/a/plants/add_plant`,
+        `${process.env.NEXT_PUBLIC_REQUEST_BASE_URL}/a/plants/add-plant`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -48,14 +49,16 @@ export default function PlantDetails() {
       )
     } catch (e) {
       console.log("HIT CATCH: ", e)
+      setAddedPlant(false)
     }
   }
 
   //WORKING ON REMOVING
   const onRemoveClick = async () => {
+    setAddedPlant(false)
     try {
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_REQUEST_BASE_URL}/a/plants/remove_plant`,
+        `${process.env.NEXT_PUBLIC_REQUEST_BASE_URL}/a/plants/remove-plant`,
         {
           method: "DELETE",
           headers: { "Content-Type": "application/json" },
@@ -67,6 +70,7 @@ export default function PlantDetails() {
       )
     } catch (e) {
       console.log("HIT CATCH: ", e)
+      setAddedPlant(true)
     }
   }
 
